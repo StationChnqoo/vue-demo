@@ -2,7 +2,6 @@
 defineProps<{
   msg: string
 }>()
-import Modal from './Modal.vue';
 </script>
 
 <template>
