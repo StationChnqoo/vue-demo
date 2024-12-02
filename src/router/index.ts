@@ -1,4 +1,8 @@
-import { createRouter, createWebHashHistory, createWebHistory } from "vue-router";
+import {
+  createRouter,
+  createWebHashHistory,
+  createWebHistory,
+} from "vue-router";
 import HomeView from "../views/HomeView.vue";
 
 const router = createRouter({
@@ -33,6 +37,11 @@ const router = createRouter({
       path: "/dynamicPathAsSrc",
       name: "dynamicPathAsSrc",
       component: () => import("../views/dynamicPathAsSrc/index.vue"),
+    },
+    {
+      path: "/testCascader",
+      name: "testCascader",
+      component: () => import("../views/testCascader/index.vue"),
     },
   ],
 });
