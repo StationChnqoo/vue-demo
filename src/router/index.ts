@@ -1,8 +1,8 @@
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHashHistory, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: "/",
@@ -12,26 +12,27 @@ const router = createRouter({
     {
       path: "/about",
       name: "about",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import("../views/AboutView.vue"),
     },
     {
       path: "/emailSetting",
       name: "emailSetting",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import("../views/emailSetting/index.vue"),
     },
     {
       path: "/hasReadHTML",
       name: "hasReadHTML",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import("../views/hasReadHTML/index.vue"),
+    },
+    {
+      path: "/webCapture",
+      name: "webCapture",
+      component: () => import("../views/webCapture/index.vue"),
+    },
+    {
+      path: "/dynamicPathAsSrc",
+      name: "dynamicPathAsSrc",
+      component: () => import("../views/dynamicPathAsSrc/index.vue"),
     },
   ],
 });
