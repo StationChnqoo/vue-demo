@@ -14,11 +14,6 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: "/about",
-      name: "about",
-      component: () => import("../views/AboutView.vue"),
-    },
-    {
       path: "/emailSetting",
       name: "emailSetting",
       component: () => import("../views/emailSetting/index.vue"),
@@ -42,6 +37,16 @@ const router = createRouter({
       path: "/testCascader",
       name: "testCascader",
       component: () => import("../views/testCascader/index.vue"),
+    },
+    {
+      path: "/testUseInfiniteQuery",
+      name: "testUseInfiniteQuery",
+      component: () => import("../views/testUseInfiniteQuery/index.vue"),
+    },
+    {
+      path: "/test",
+      name: "test",
+      component: () => import("../views/test/index.vue"),
     },
   ],
 });
