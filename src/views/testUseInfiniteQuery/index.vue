@@ -1,11 +1,20 @@
 <script setup lang="ts">
-import { useInfiniteQuery } from "@tanstack/vue-query";
+import { useInfiniteQuery, useQueryClient } from "@tanstack/vue-query";
 import axios from "axios";
-import { onMounted, ref } from "vue";
+import { onMounted } from "vue";
+const queryClient = useQueryClient();
 
 onMounted(() => {
   // loadDatas();
 });
+
+const reload = async () => {
+  queryClient.removeQueries({
+    queryKey: ["myQuery"],
+    exact: true,
+  });
+  myQuery.refetch();
+};
 
 const loadDatas = async (page: number) => {
   let result = await axios.get("https://service.cctv3.net/api/testMongo", {
@@ -40,13 +49,17 @@ const myQuery = useInfiniteQuery({
         >
           <div>{{ index + 1 }}.{{ item.title }}</div>
         </div>
+        <n-spin v-if="myQuery.isFetching.value" style="margin: 12px 0" />
       </div>
       <div style="height: 12px" />
       <n-flex :align="'center'" :justify="'space-between'" style="width: 360px">
         <div>Current: {{ myQuery.data.value?.pageParams.pop() }}</div>
         <n-flex :justify="'center'">
-          <n-button @click="">重置</n-button>
-          <n-button type="primary" @click="myQuery.fetchNextPage()"
+          <n-button @click="reload">重置</n-button>
+          <n-button
+            type="primary"
+            @click="myQuery.fetchNextPage()"
+            :loading="myQuery.isFetching.value"
             >下一页</n-button
           >
         </n-flex>
