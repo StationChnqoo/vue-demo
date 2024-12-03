@@ -8,7 +8,7 @@ onMounted(() => {
 });
 
 const loadDatas = async (page: number) => {
-  let result = await axios.get("http://service.cctv3.net/api/testMongo", {
+  let result = await axios.get("https://service.cctv3.net/api/testMongo", {
     params: { current: page, pageSize: 10 },
   });
   // datas.value = result.data.data;
