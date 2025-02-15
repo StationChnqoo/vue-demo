@@ -95,21 +95,22 @@ const loadVideo = (src: string) => {
 <style scoped>
 .player-container {
   width: 100vw;
+  margin: auto;
   height: 100vh;
   background: black;
-  display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  display: flex;
+  overflow-y: hidden;
+  .plyr__control[data-plyr="airplay"] {
+    display: none !important;
+  }
 }
 
-::v-deep(.plyr video) {
-  height: 100% !important;
-  width: auto !important;
-}
-
-/* 隐藏 AirPlay 按钮 */
-::v-deep(.plyr__control[data-plyr="airplay"]) {
-  display: none !important;
+video {
+  display: block;
+  width: 100vw;
+  margin: auto;
+  object-fit: contain;
 }
 </style>
