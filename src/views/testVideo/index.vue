@@ -103,10 +103,9 @@ const loadVideo = (src: string) => {
   overflow: hidden;
 }
 
-/* 让 Plyr 的 Video 保持适应 */
 ::v-deep(.plyr video) {
-  width: 100% !important;
   height: 100% !important;
+  width: auto !important; /* 保证视频的宽度自适应 */
   object-fit: contain !important; /* 保持宽高比，适应播放器 */
 }
 
