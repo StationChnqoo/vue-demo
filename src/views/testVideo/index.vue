@@ -95,21 +95,23 @@ const loadVideo = (src: string) => {
 <style scoped>
 .player-container {
   width: 100vw;
-  margin: auto;
   height: 100vh;
   background: black;
+  display: flex;
   justify-content: center;
   align-items: center;
-  display: flex;
-  overflow-y: hidden;
-  .plyr__control[data-plyr="airplay"] {
-    display: none !important;
-  }
+  overflow: hidden;
 }
 
-video {
-  display: block;
-  width: 100vw;
-  margin: auto;
+/* 让 Plyr 的 Video 保持适应 */
+::v-deep(.plyr video) {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important; /* 保持宽高比，适应播放器 */
+}
+
+/* 隐藏 AirPlay 按钮 */
+::v-deep(.plyr__control[data-plyr="airplay"]) {
+  display: none !important;
 }
 </style>
