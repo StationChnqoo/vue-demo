@@ -54,6 +54,11 @@ const router = createRouter({
       name: "testDPlayer",
       component: () => import("../views/testDPlayer/index.vue"),
     },
+    {
+      path: "/testXiGuaPlayer",
+      name: "testXiGuaPlayer",
+      component: () => import("../views/testXiGuaPlayer/index.vue"),
+    },
   ],
 });
 

@@ -22,6 +22,8 @@ onMounted(() => {
     hideControls: false,
     displayDuration: true,
     storage: { enabled: false },
+    disableContextMenu: false,
+    // ratio: '360:270',
     settings: ["captions", "quality", "speed"],
     controls: [
       "play", // 播放按钮
@@ -38,6 +40,7 @@ onMounted(() => {
     },
     i18n: {
       normal: "默认",
+      speed: "播放速度",
     },
   });
   const src = route.query.src as string | undefined;
@@ -100,18 +103,12 @@ const loadVideo = (src: string) => {
   width: 100vw;
   height: 100vh;
   background: black;
+  overflow: hidden;
 }
 
-.test-plyr .plyr {
+.test-plyr video {
   width: 100%;
-  max-width: 100vw;
-  max-height: 100vh;
+  height: 100%;
+  background: black;
 }
-
-.test-plyr .plyr__video-wrapper {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 4 / 3;
-}
-
 </style>
