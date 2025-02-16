@@ -20,7 +20,6 @@ onMounted(() => {
   player = new Plyr(videoRef.value, {
     autoplay: true,
     hideControls: false,
-    ratio: '3:4',
     displayDuration: true,
     storage: { enabled: false },
     settings: ["captions", "quality", "speed"],
@@ -93,24 +92,26 @@ const loadVideo = (src: string) => {
 };
 </script>
 
-<style scoped>
+<style>
 .test-plyr {
-  width: 100vw;
-  margin: auto;
-  height: 100vh;
-  background: black;
+  display: flex;
   justify-content: center;
   align-items: center;
-  display: flex;
-  overflow-y: hidden;
-  .plyr__control[data-plyr="airplay"] {
-    display: none !important;
-  }
+  width: 100vw;
+  height: 100vh;
+  background: black;
 }
 
-video {
-  display: block;
-  width: 100vw;
-  margin: auto;
+.test-plyr .plyr {
+  width: 100%;
+  max-width: 100vw;
+  max-height: 100vh;
 }
+
+.test-plyr .plyr__video-wrapper {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+}
+
 </style>
