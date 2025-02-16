@@ -1,5 +1,5 @@
 <template>
-  <div class="player-container">
+  <div class="test-plyr">
     <video ref="videoRef" controls crossorigin="anonymous" playsinline />
   </div>
 </template>
@@ -20,6 +20,7 @@ onMounted(() => {
   player = new Plyr(videoRef.value, {
     autoplay: true,
     hideControls: false,
+    ratio: '3:4',
     displayDuration: true,
     storage: { enabled: false },
     settings: ["captions", "quality", "speed"],
@@ -93,7 +94,7 @@ const loadVideo = (src: string) => {
 </script>
 
 <style scoped>
-.player-container {
+.test-plyr {
   width: 100vw;
   margin: auto;
   height: 100vh;
@@ -111,6 +112,5 @@ video {
   display: block;
   width: 100vw;
   margin: auto;
-  object-fit: contain;
 }
 </style>

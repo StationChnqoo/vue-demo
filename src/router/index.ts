@@ -45,9 +45,14 @@ const router = createRouter({
       component: () => import("../views/test/index.vue"),
     },
     {
-      path: "/testVideo",
-      name: "testVideo",
-      component: () => import("../views/testVideo/index.vue"),
+      path: "/testPlyr",
+      name: "testPlyr",
+      component: () => import("../views/testPlyr/index.vue"),
+    },
+    {
+      path: "/testDPlayer",
+      name: "testDPlayer",
+      component: () => import("../views/testDPlayer/index.vue"),
     },
   ],
 });
