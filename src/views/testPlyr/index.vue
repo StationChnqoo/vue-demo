@@ -111,4 +111,9 @@ const loadVideo = (src: string) => {
   height: 100%;
   background: black;
 }
+
+.plyr__control[data-plyr="play"]:hover {
+  background: transparent !important;
+  box-shadow: none !important;
+}
 </style>

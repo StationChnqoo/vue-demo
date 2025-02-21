@@ -23,7 +23,6 @@ watch(
   () => route.query.src,
   (newSrc) => {
     const src = route.query.src as string;
-    alert(src);
     if (newSrc && player) {
       // @ts-ignore
       player.switchVideo({
@@ -68,10 +67,10 @@ const initPlayer = (src: string) => {
     contextmenu: [],
     playbackSpeed: [1, 1.5, 2],
     mutex: true,
-    hotkey: true,
+    hotkey: false,
     volume: 1,
     preload: "auto",
-    screenshot: true,
+    screenshot: false,
     highlight: [],
   });
   // @ts-ignore
@@ -91,6 +90,9 @@ const initPlayer = (src: string) => {
     display: none !important;
   }
   .dplayer-full-in-icon {
+    display: none !important;
+  }
+  .dplayer-volume-bar-wrap {
     display: none !important;
   }
 }
