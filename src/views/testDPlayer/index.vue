@@ -95,5 +95,12 @@ const initPlayer = (src: string) => {
   .dplayer-volume-bar-wrap {
     display: none !important;
   }
+  .dplayer-bar-time {
+    display: none !important;
+  }
+  .dplayer-airplay,
+  .dplayer-cast {
+    display: none !important;
+  }
 }
 </style>
