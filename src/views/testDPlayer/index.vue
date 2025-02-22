@@ -65,6 +65,7 @@ const initPlayer = (src: string) => {
         },
       },
     },
+    theme: '#ca6924',
     contextmenu: [],
     playbackSpeed: [1, 1.5, 2],
     mutex: true,
