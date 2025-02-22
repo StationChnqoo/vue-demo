@@ -23,7 +23,6 @@ watch(
   () => route.query.src,
   (newSrc) => {
     const src = route.query.src as string;
-    alert(src);
     if (newSrc && player) {
       // @ts-ignore
       player.switchVideo({
@@ -69,14 +68,19 @@ const initPlayer = (src: string) => {
     contextmenu: [],
     playbackSpeed: [1, 1.5, 2],
     mutex: true,
-    hotkey: true,
+    hotkey: false,
     volume: 1,
     preload: "auto",
-    screenshot: true,
+    screenshot: false,
     highlight: [],
   });
   // @ts-ignore
   player.controller.hide = () => {}; // 禁止隐藏Controller
+  // @ts-ignore
+  document.addEventListener("contextmenu", (event) => {
+    // 禁用浏览器右键菜单
+    event.preventDefault();
+  });
 };
 </script>
 
@@ -92,6 +96,26 @@ const initPlayer = (src: string) => {
     display: none !important;
   }
   .dplayer-full-in-icon {
+    display: none !important;
+  }
+  /** 禁止音量的SideBar，只保留是否静音 */
+  .dplayer-volume-bar-wrap {
+    display: none !important;
+  }
+  /** 点进进度条某个位置，tooltip当前的时间 */
+  .dplayer-bar-time {
+    display: none !important;
+  }
+  .dplayer-airplay,
+  .dplayer-cast {
+    display: none !important;
+  }
+  /** 右键菜单，DPlayer 作者 视频信息 */
+  .dplayer-menu.dplayer-menu-show {
+    display: none !important;
+  }
+  /* 点进进度条某个位置，左下角浮动时间 快进/快退多少秒 */
+  .dplayer-notice {
     display: none !important;
   }
 }
