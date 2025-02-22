@@ -67,12 +67,13 @@ const initPlayer = (src: string) => {
     theme: "#ca6924",
     contextmenu: [],
     playbackSpeed: [1, 1.5, 2],
-    mutex: true,
+    mutex: false,
     hotkey: false,
     volume: 1,
     preload: "auto",
     screenshot: false,
     highlight: [],
+    loop: true,
   });
   // @ts-ignore
   player.controller.hide = () => {}; // 禁止隐藏Controller
@@ -124,7 +125,7 @@ const initPlayer = (src: string) => {
     .dplayer-bar
     .dplayer-played
     .dplayer-thumb {
-    transform: scale(1) !important;
+    transform: scale(0) !important;
   }
 }
 </style>
