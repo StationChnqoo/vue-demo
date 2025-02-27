@@ -64,14 +64,16 @@ const initPlayer = (src: string) => {
         },
       },
     },
+    theme: "#ca6924",
     contextmenu: [],
     playbackSpeed: [1, 1.5, 2],
-    mutex: true,
+    mutex: false,
     hotkey: false,
     volume: 1,
     preload: "auto",
     screenshot: false,
     highlight: [],
+    loop: true,
   });
   // @ts-ignore
   player.controller.hide = () => {}; // 禁止隐藏Controller
@@ -116,6 +118,14 @@ const initPlayer = (src: string) => {
   /* 点进进度条某个位置，左下角浮动时间 快进/快退多少秒 */
   .dplayer-notice {
     display: none !important;
+  }
+  /* 进度条上的圆点，默认情况下只有精度条获得焦点才显示 */
+  .dplayer-controller
+    .dplayer-bar-wrap
+    .dplayer-bar
+    .dplayer-played
+    .dplayer-thumb {
+    transform: scale(0) !important;
   }
 }
 </style>

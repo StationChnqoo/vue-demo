@@ -1,12 +1,5 @@
 <template>
-  <div class="test-xg">
-    <video
-      ref="videoRef"
-      class="xgplayer"
-      playsinline
-      crossorigin="anonymous"
-    />
-  </div>
+  <div class="test-xg" />
 </template>
 
 <script setup lang="ts">
@@ -14,6 +7,7 @@ import Player from "xgplayer";
 import HlsPlugin from "xgplayer-hls";
 import { onMounted, onUnmounted, ref, watch } from "vue";
 import { useRoute } from "vue-router";
+import "xgplayer/dist/index.min.css";
 
 const route = useRoute();
 const videoRef = ref<HTMLVideoElement | null>(null);
@@ -52,18 +46,11 @@ const loadVideo = (src: string) => {
   }
 
   player = new Player({
-    el: videoRef.value,
+    id: "test-xg",
     url: src,
+    height: "100%",
+    width: "100%",
     autoplay: true,
-    playsinline: true,
-    lang: "zh-cn",
-    fluid: true,
-    videoFillMode: "contain", // 防止溢出
-    controls: true,
-    plugins: [HlsPlugin],
-    cssFullscreen: false, // 允许 CSS 全屏
-    screenShot: true, // 允许截图
-    playbackRate: [1, 1.5, 2], // 倍速
   });
 };
 </script>
