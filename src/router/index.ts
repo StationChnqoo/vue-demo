@@ -59,6 +59,11 @@ const router = createRouter({
       name: "testXiGuaPlayer",
       component: () => import("../views/testXiGuaPlayer/index.vue"),
     },
+    {
+      path: "/testChartJS",
+      name: "testChartJS",
+      component: () => import("../views/testChartJS/index.vue"),
+    },
   ],
 });
 
