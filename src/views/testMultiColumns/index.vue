@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import axios from "axios";
-import type { DataTableColumns } from "naive-ui";
+import { NInput, type DataTableColumns } from "naive-ui";
 import type { RowData } from "naive-ui/es/data-table/src/interface";
 import { h, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
@@ -8,14 +8,16 @@ import { useRoute } from "vue-router";
 const loading = ref(false);
 const route = useRoute();
 const locale = ref("es");
-const columns = ref<DataTableColumns<RowData>>([
+const datas = ref<any[]>([]);
+
+const tableColumns = ref<DataTableColumns<RowData>>([
   {
-    title: "id",
-    key: "id",
-    width: 100,
+    title: "行业",
+    key: "label",
+    width: 160,
     resizable: false,
     render(rowData, rowIndex) {
-      return "--";
+      return rowData.label;
     },
   },
 ]);
@@ -24,27 +26,46 @@ const loadColumns = async () => {
   let result = await axios.get(
     "http://localhost:3000/api/mock/multiColumns?n=5"
   );
-  let index = result.data.data.findIndex((it) => it.languageTag == locale);
-  let _datas = [...result.data.data];
-  let t = _datas[0];
-  _datas[0] = _datas[index];
-  _datas[index] = t;
-  columns.value = [
-    ...columns.value,
-    ..._datas.map((it, i) => {
-      console.log(it);
+  let { columns, rows } = result.data.data;
+  datas.value = rows;
+  let index = columns.findIndex((it) => it.languageTag == locale.value);
+  if (index >= 0) {
+    [columns[0], columns[index]] = [columns[index], columns[0]];
+  }
+  columns = columns.sort((a, b) => a.status - b.status);
+  tableColumns.value = [
+    ...tableColumns.value,
+    ...columns.map((it, i) => {
       return {
-        title: it.languageName,
+        title: () => {
+          return [
+            h("span", [
+              h("span", {}, [
+                h("span", { style: { color: "red" } }, "*"),
+                h("span", {}, it.languageName),
+              ]),
+            ]),
+            h("span", {}, it.languageName + "（已禁用）"),
+          ][it.status];
+        },
         key: it.languageTag,
-        width: 100,
+        width: 200,
         resizable: false,
         render(rowData, rowIndex) {
-          return "--";
+          // console.log(rowData, it);
+          let item = rowData.value.find((data) => data.name == it.languageTag);
+          return i < 1
+            ? item.value
+            : h(NInput, {
+                value: item.value,
+                // status:
+                //   it.status == 1 ? (item?.value ? null : "error") : "error",
+                onUpdateValue(v) {},
+              });
         },
       };
     }),
   ];
-  console.log("columns: ", columns.value);
 };
 
 onMounted(() => {
@@ -57,14 +78,14 @@ onMounted(() => {
     <n-data-table
       size="small"
       remote
-      :columns="columns"
+      :columns="tableColumns"
       :bordered="true"
       :single-line="false"
       flex-height
       striped
       :loading="loading"
       scroll-x="1080"
-      :data="[]"
+      :data="datas"
       style="height: calc(100vh)"
       :pagination="undefined"
     />
