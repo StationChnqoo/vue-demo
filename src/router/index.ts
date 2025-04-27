@@ -15,6 +15,11 @@ const router = createRouter({
       component: () => import("../views/emailSetting/index.vue"),
     },
     {
+      path: "/testBubble",
+      name: "testBubble",
+      component: () => import("../views/testBubble/index.vue"),
+    },
+    {
       path: "/hasReadHTML",
       name: "hasReadHTML",
       component: () => import("../views/hasReadHTML/index.vue"),
