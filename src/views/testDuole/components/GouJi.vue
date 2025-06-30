@@ -2,7 +2,8 @@
 import { computed, onMounted, ref } from "vue";
 import Player from "./Player.vue";
 import { parseCardInput } from "../constants";
-const isHawk = ref(false);
+
+const isHawk = ref(true);
 const myBigCards = ref(""); // 我手里的大牌
 const otherBigCards = ref(""); // 外面已经出的大牌
 
@@ -18,7 +19,8 @@ const unusedBigCards = computed(() => {
   let allBigCards = hawks + "D".repeat(6) + "X".repeat(6);
 
   // ✅ 使用 parseCardInput 来解析输入
-  const used = parseCardInput(myBigCards.value) + parseCardInput(otherBigCards.value);
+  const used =
+    parseCardInput(myBigCards.value) + parseCardInput(otherBigCards.value);
 
   const count = (s: string) => {
     const map = new Map<string, number>();
@@ -53,7 +55,6 @@ onMounted(() => {
         <div style="height: 18px" />
         <n-input
           :value="unusedBigCards"
-          disabled
           type="textarea"
           placeholder=""
           rows="2"
