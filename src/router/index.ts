@@ -70,11 +70,6 @@ const router = createRouter({
       component: () => import("../views/testChartJS/index.vue"),
     },
     {
-      path: "/testMultiColumns",
-      name: "testMultiColumns",
-      component: () => import("../views/testMultiColumns/index.vue"),
-    },
-        {
       path: "/testDuole",
       name: "testDuole",
       component: () => import("../views/testDuole/index.vue"),
