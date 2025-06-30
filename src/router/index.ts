@@ -74,6 +74,11 @@ const router = createRouter({
       name: "testMultiColumns",
       component: () => import("../views/testMultiColumns/index.vue"),
     },
+        {
+      path: "/testDuole",
+      name: "testDuole",
+      component: () => import("../views/testDuole/index.vue"),
+    },
   ],
 });
 
