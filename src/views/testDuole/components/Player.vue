@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from "vue";
+import { parseCardInput } from "../constants";
 const inCards = ref(""); // 吃贡
 const outCards = ref(""); // 进贡
 
@@ -23,9 +24,15 @@ const allRanks = [
 const playedCards = ref("");
 
 const remainingRanks = computed(() => {
-  const used = new Set(
-    playedCards.value.toUpperCase().replace(/\s+/g, "").split("")
-  );
+  // 替换输入格式：如 "3J 50 7K 8A"
+  const groups = playedCards.value.toUpperCase().trim().split(/\s+/);
+  const used = new Set<string>();
+  for (const group of groups) {
+    const card = group.slice(-1); // 每组最后一个字符为牌名
+    if (allRanks.includes(card)) {
+      used.add(card);
+    }
+  }
   return allRanks.filter((rank) => !used.has(rank)).join("");
 });
 
@@ -35,7 +42,7 @@ const countUnsedCards = computed(() => {
     total +
     inCards.value.length -
     outCards.value.length -
-    playedCards.value.length
+    parseCardInput(playedCards.value).length
   );
 });
 </script>

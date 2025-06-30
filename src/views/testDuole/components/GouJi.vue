@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from "vue";
 import Player from "./Player.vue";
+import { parseCardInput } from "../constants";
 const isHawk = ref(false);
 const myBigCards = ref(""); // 我手里的大牌
 const otherBigCards = ref(""); // 外面已经出的大牌
@@ -16,10 +17,9 @@ const unusedBigCards = computed(() => {
   let hawks = isHawk ? "Y".repeat(6) : "";
   let allBigCards = hawks + "D".repeat(6) + "X".repeat(6);
 
-  // 把两个输入框拼起来表示已知的大牌
-  const used = (myBigCards.value + otherBigCards.value).toUpperCase();
+  // ✅ 使用 parseCardInput 来解析输入
+  const used = parseCardInput(myBigCards.value) + parseCardInput(otherBigCards.value);
 
-  // 用字符计数法从总牌中逐个扣除
   const count = (s: string) => {
     const map = new Map<string, number>();
     for (const ch of s) {
@@ -32,7 +32,6 @@ const unusedBigCards = computed(() => {
   for (const [ch, num] of usedCount.entries()) {
     totalCount.set(ch, Math.max((totalCount.get(ch) || 0) - num, 0));
   }
-  // 拼出剩余牌
   let result = "";
   for (const [ch, num] of totalCount.entries()) {
     result += ch.repeat(num);
