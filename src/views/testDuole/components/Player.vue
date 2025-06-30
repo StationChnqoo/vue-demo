@@ -63,19 +63,14 @@ const countUnsedCards = computed(() => {
         <n-input-group-label>进贡</n-input-group-label>
         <n-input
           type="text"
-          placeholder="请输入进贡"
+          placeholder=""
           clearable
           v-model:value="outCards"
         />
       </n-input-group>
       <n-input-group style="flex: 1">
         <n-input-group-label>吃贡</n-input-group-label>
-        <n-input
-          type="text"
-          placeholder="请输入吃贡"
-          clearable
-          v-model:value="inCards"
-        />
+        <n-input type="text" placeholder="" clearable v-model:value="inCards" />
       </n-input-group>
     </n-flex>
     <div style="height: 4px" />
