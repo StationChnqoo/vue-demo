@@ -1,96 +1,24 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
-import Player from "./components/Player.vue";
-const isHawk = ref(false);
-const myBigCards = ref(""); // 我手里的大牌
-const otherBigCards = ref(""); // 外面已经出的大牌
+import { onMounted } from "vue";
+import GouJi from "./components/GouJi.vue";
 
-const players = ref(
-  ["对家", "上家", "下家"].map((it, i) => ({
-    name: it,
-    cards: "",
-  }))
-);
-
-const unusedBigCards = computed(() => {
-  let hawks = isHawk ? "Y".repeat(6) : "";
-  let allBigCards = hawks + "D".repeat(6) + "X".repeat(6) + "2".repeat(24);
-
-  // 把两个输入框拼起来表示已知的大牌
-  const used = myBigCards.value + otherBigCards.value;
-
-  // 用字符计数法从总牌中逐个扣除
-  const count = (s: string) => {
-    const map = new Map<string, number>();
-    for (const ch of s) {
-      map.set(ch, (map.get(ch) || 0) + 1);
-    }
-    return map;
-  };
-  const totalCount = count(allBigCards);
-  const usedCount = count(used);
-  for (const [ch, num] of usedCount.entries()) {
-    totalCount.set(ch, Math.max((totalCount.get(ch) || 0) - num, 0));
-  }
-  // 拼出剩余牌
-  let result = "";
-  for (const [ch, num] of totalCount.entries()) {
-    result += ch.repeat(num);
-  }
-  return "剩余的大牌：\n" + result;
+onMounted(() => {
+  document.title = "多乐游戏";
 });
 </script>
 
 <template>
   <div class="duole">
-    <div class="players">
-      <div style="flex: 1">
-        <div>游戏设置</div>
-        <n-checkbox v-model:checked="isHawk" label="是否带鹰 🦅" />
-        <div style="height: 18px" />
-        <n-input
-          :value="unusedBigCards"
-          disabled
-          type="textarea"
-          placeholder=""
-          rows="2"
-        />
-      </div>
-      <div style="width: 24px" />
-      <Player :player="players[0]" :is-hawk="isHawk" />
-    </div>
-    <div style="height: 24px" />
-    <div class="players">
-      <Player :player="players[1]" :is-hawk="isHawk" />
-      <div style="width: 24px" />
-      <Player :player="players[2]" :is-hawk="isHawk" />
-    </div>
-    <div style="height: 24px" />
-    <div class="players">
-      <div style="flex: 1">
-        <div>我的主要手牌（鹰Y、大小王DX、2）</div>
-        <n-input
-          v-model:value="myBigCards"
-          placeholder="请输入手牌"
-          clearable
-        />
-      </div>
-      <div style="width: 24px" />
-      <div style="flex: 1">
-        <div>外面的主要大牌（鹰Y、大小王DX、2）</div>
-        <n-input
-          v-model:value="otherBigCards"
-          placeholder="请输入手牌"
-          clearable
-        />
-      </div>
-    </div>
+    <n-tabs type="line" animated>
+      <n-tab-pane name="gj" tab="多乐够级"><GouJi /></n-tab-pane>
+      <n-tab-pane name="bh" tab="多乐保皇"><div>敬请期待 ~</div> </n-tab-pane>
+    </n-tabs>
   </div>
 </template>
 
 <style scoped>
 .duole {
-  padding: 32px;
+  padding: 12px 32px;
   .players {
     display: flex;
   }
