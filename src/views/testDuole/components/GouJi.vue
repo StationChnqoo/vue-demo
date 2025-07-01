@@ -52,12 +52,13 @@ onMounted(() => {
       <div style="flex: 1">
         <div>游戏设置</div>
         <n-checkbox v-model:checked="isHawk" label="是否带鹰 🦅" />
-        <div style="height: 18px" />
+        <div style="height: 30px" />
         <n-input
           :value="unusedBigCards"
           type="textarea"
           placeholder=""
           rows="2"
+          disabled
         />
       </div>
       <div style="width: 24px" />

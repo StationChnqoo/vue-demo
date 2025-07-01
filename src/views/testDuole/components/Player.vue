@@ -36,6 +36,10 @@ const remainingRanks = computed(() => {
   return allRanks.filter((rank) => !used.has(rank)).join("");
 });
 
+const playedPercent = computed(() => {
+  return (countUnsedCards.value / 51) * 100;
+});
+
 const countUnsedCards = computed(() => {
   const total = props.isHawk ? 51 : 50;
   return (
@@ -64,22 +68,27 @@ const countUnsedCards = computed(() => {
         <n-input
           type="text"
           placeholder=""
-          clearable
           v-model:value="outCards"
         />
       </n-input-group>
       <n-input-group style="flex: 1">
         <n-input-group-label>吃贡</n-input-group-label>
-        <n-input type="text" placeholder="" clearable v-model:value="inCards" />
+        <n-input type="text" placeholder="" v-model:value="inCards" />
       </n-input-group>
     </n-flex>
+    <div style="height: 4px" />
+    <n-progress
+      type="line"
+      :percentage="playedPercent"
+      :show-indicator="false"
+       status="success"
+    />
     <div style="height: 4px" />
     <n-input
       v-model:value="playedCards"
       type="textarea"
       placeholder="请输入手牌"
       rows="2"
-      clearable
     />
   </div>
 </template>
