@@ -59,12 +59,13 @@ onMounted(() => {
           placeholder=""
           rows="2"
           disabled
+          size="small"
         />
       </div>
       <div style="width: 24px" />
       <Player :player="players[0]" :is-hawk="isHawk" />
     </div>
-    <div style="height: 24px" />
+    <div style="height: 16px" />
     <div class="players">
       <Player :player="players[1]" :is-hawk="isHawk" />
       <div style="width: 24px" />
