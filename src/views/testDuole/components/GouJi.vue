@@ -3,7 +3,7 @@ import { computed, onMounted, ref } from "vue";
 import Player from "./Player.vue";
 import { parseCardInput } from "../constants";
 
-const isHawk = ref(true);
+const isHawk = ref(true); // 带鹰模式
 const myBigCards = ref(""); // 我手里的大牌
 const otherBigCards = ref(""); // 外面已经出的大牌
 
@@ -15,7 +15,7 @@ const players = ref(
 );
 
 const unusedBigCards = computed(() => {
-  let hawks = isHawk ? "Y".repeat(6) : "";
+  let hawks = isHawk.value ? "Y".repeat(6) : "";
   let allBigCards = hawks + "D".repeat(6) + "X".repeat(6);
 
   // ✅ 使用 parseCardInput 来解析输入
