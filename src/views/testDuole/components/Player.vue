@@ -65,11 +65,7 @@ const countUnsedCards = computed(() => {
     <n-flex>
       <n-input-group style="flex: 1">
         <n-input-group-label>进贡</n-input-group-label>
-        <n-input
-          type="text"
-          placeholder=""
-          v-model:value="outCards"
-        />
+        <n-input type="text" placeholder="" v-model:value="outCards" />
       </n-input-group>
       <n-input-group style="flex: 1">
         <n-input-group-label>吃贡</n-input-group-label>
@@ -81,7 +77,7 @@ const countUnsedCards = computed(() => {
       type="line"
       :percentage="playedPercent"
       :show-indicator="false"
-       status="success"
+      status="success"
     />
     <div style="height: 4px" />
     <n-input
@@ -89,6 +85,7 @@ const countUnsedCards = computed(() => {
       type="textarea"
       placeholder="请输入手牌"
       rows="2"
+      size="small"
     />
   </div>
 </template>

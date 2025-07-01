@@ -74,20 +74,12 @@ onMounted(() => {
     <div class="players">
       <div style="flex: 1">
         <div>我的主要手牌（鹰Y、大小王DX）</div>
-        <n-input
-          v-model:value="myBigCards"
-          placeholder="请输入手牌"
-          clearable
-        />
+        <n-input v-model:value="myBigCards" placeholder="请输入手牌" />
       </div>
       <div style="width: 24px" />
       <div style="flex: 1">
         <div>外面的主要大牌（鹰Y、大小王DX）</div>
-        <n-input
-          v-model:value="otherBigCards"
-          placeholder="请输入手牌"
-          clearable
-        />
+        <n-input v-model:value="otherBigCards" placeholder="请输入手牌" />
       </div>
     </div>
   </div>
