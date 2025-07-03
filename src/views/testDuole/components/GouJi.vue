@@ -2,8 +2,11 @@
 import { computed, onMounted, ref } from "vue";
 import Player from "./Player.vue";
 import { parseCardInput } from "../constants";
+import { useRoute, useRouter } from "vue-router";
+import router from "@/router";
 
-const isHawk = ref(true); // 带鹰模式
+const route = useRoute();
+const isHawk = ref(route.query.isHawk == "1"); // 带鹰模式
 const myBigCards = ref(""); // 我手里的大牌
 const otherBigCards = ref(""); // 外面已经出的大牌
 
@@ -13,6 +16,10 @@ const players = ref(
     cards: "",
   }))
 );
+
+const onPlayersInput = (index: number, cards: string) => {
+  console.log(index, cards);
+};
 
 const unusedBigCards = computed(() => {
   let hawks = isHawk.value ? "Y".repeat(6) : "";
@@ -52,24 +59,36 @@ onMounted(() => {
       <div style="flex: 1">
         <div>游戏设置</div>
         <n-checkbox v-model:checked="isHawk" label="是否带鹰 🦅" />
-        <div style="height: 30px" />
+        <div style="height: 10px" />
         <n-input
           :value="unusedBigCards"
           type="textarea"
           placeholder=""
-          rows="2"
+          rows="3"
           disabled
           size="small"
         />
       </div>
       <div style="width: 24px" />
-      <Player :player="players[0]" :is-hawk="isHawk" />
+      <Player
+        :player="players[0]"
+        :is-hawk="isHawk"
+        @input="(e) => onPlayersInput(0, e)"
+      />
     </div>
     <div style="height: 16px" />
     <div class="players">
-      <Player :player="players[1]" :is-hawk="isHawk" />
+      <Player
+        :player="players[1]"
+        :is-hawk="isHawk"
+        @input="(e) => onPlayersInput(1, e)"
+      />
       <div style="width: 24px" />
-      <Player :player="players[2]" :is-hawk="isHawk" />
+      <Player
+        :player="players[2]"
+        :is-hawk="isHawk"
+        @input="(e) => onPlayersInput(2, e)"
+      />
     </div>
     <div style="height: 24px" />
     <div class="players">

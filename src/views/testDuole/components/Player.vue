@@ -5,7 +5,7 @@ const inCards = ref(""); // 吃贡
 const outCards = ref(""); // 进贡
 
 const props = defineProps(["player", "isHawk"]);
-
+const emits = defineEmits(["input"]);
 const allRanks = [
   "3",
   "4",
@@ -86,6 +86,7 @@ const countUnsedCards = computed(() => {
       placeholder="请输入手牌"
       rows="2"
       size="small"
+      @input="(e) => emits('input', e)"
     />
   </div>
 </template>
