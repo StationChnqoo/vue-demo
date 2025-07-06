@@ -12,8 +12,12 @@ export function parseCardInput(input: string): string {
         result += card.repeat(count);
         continue;
       }
+    } else if (token.length === 1 && /^[A-Z0-9]$/.test(token)) {
+      // 单个字符，默认数量为 1
+      result += token;
+      continue;
     }
-    // fallback：原始格式（如 KKK、AA、Q）不处理数量
+    // fallback：原样添加
     result += token;
   }
   return result;

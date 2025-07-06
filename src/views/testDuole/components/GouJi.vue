@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from "vue";
-import Player from "./Player.vue";
+import { useRoute } from "vue-router";
 import { parseCardInput } from "../constants";
-import { useRoute, useRouter } from "vue-router";
-import router from "@/router";
+import Player from "./Player.vue";
 
 const route = useRoute();
 const isHawk = ref(route.query.isHawk == "1"); // 带鹰模式
@@ -20,6 +19,10 @@ const players = ref(
 const onPlayersInput = (index: number, cards: string) => {
   console.log(index, cards);
 };
+
+const sum = computed(() => {
+  return isHawk.value ? 51 : 50;
+});
 
 const unusedBigCards = computed(() => {
   let hawks = isHawk.value ? "Y".repeat(6) : "";
@@ -72,7 +75,7 @@ onMounted(() => {
       <div style="width: 24px" />
       <Player
         :player="players[0]"
-        :is-hawk="isHawk"
+        :sum="sum"
         @input="(e) => onPlayersInput(0, e)"
       />
     </div>
@@ -80,13 +83,13 @@ onMounted(() => {
     <div class="players">
       <Player
         :player="players[1]"
-        :is-hawk="isHawk"
+        :sum="sum"
         @input="(e) => onPlayersInput(1, e)"
       />
       <div style="width: 24px" />
       <Player
         :player="players[2]"
-        :is-hawk="isHawk"
+        :sum="sum"
         @input="(e) => onPlayersInput(2, e)"
       />
     </div>

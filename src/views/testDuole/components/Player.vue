@@ -4,7 +4,7 @@ import { parseCardInput } from "../constants";
 const inCards = ref(""); // 吃贡
 const outCards = ref(""); // 进贡
 
-const props = defineProps(["player", "isHawk"]);
+const props = defineProps(["player", "sum"]);
 const emits = defineEmits(["input"]);
 const allRanks = [
   "3",
@@ -37,11 +37,11 @@ const remainingRanks = computed(() => {
 });
 
 const playedPercent = computed(() => {
-  return (countUnsedCards.value / 51) * 100;
+  return (countUnsedCards.value / props.sum) * 100;
 });
 
 const countUnsedCards = computed(() => {
-  const total = props.isHawk ? 51 : 50;
+  const total = props.sum;
   return (
     total +
     inCards.value.length -
