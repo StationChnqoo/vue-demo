@@ -1,11 +1,13 @@
 <script setup lang="ts">
+import { useDuoleStore } from "@/stores/duole";
 import { computed, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import { parseCardInput } from "../constants";
 import Player from "./Player.vue";
 
+const duoleStore = useDuoleStore();
 const route = useRoute();
-const isHawk = ref(route.query.isHawk == "1"); // 带鹰模式
+
 const myBigCards = ref(""); // 我手里的大牌
 const otherBigCards = ref(""); // 外面已经出的大牌
 
@@ -21,11 +23,11 @@ const onPlayersInput = (index: number, cards: string) => {
 };
 
 const sum = computed(() => {
-  return isHawk.value ? 51 : 50;
+  return duoleStore.isHawk ? 51 : 50;
 });
 
 const unusedBigCards = computed(() => {
-  let hawks = isHawk.value ? "Y".repeat(6) : "";
+  let hawks = duoleStore.isHawk ? "Y".repeat(6) : "";
   let allBigCards = hawks + "D".repeat(6) + "X".repeat(6);
 
   // ✅ 使用 parseCardInput 来解析输入
@@ -57,11 +59,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="gj">
+  <div class="duole-gj">
     <div class="players">
       <div style="flex: 1">
         <div>游戏设置</div>
-        <n-checkbox v-model:checked="isHawk" label="是否带鹰 🦅" />
+        <n-checkbox v-model:checked="duoleStore.isHawk" label="是否带鹰 🦅" />
         <div style="height: 10px" />
         <n-input
           :value="unusedBigCards"
@@ -109,7 +111,7 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.gj {
+.duole-gj {
   .players {
     display: flex;
   }

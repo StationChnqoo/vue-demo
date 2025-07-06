@@ -33,7 +33,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="gj">
+  <div class="duole-bh">
     <n-flex justify="space-between" align="center">
       <div>游戏玩法：</div>
       <div style="width: 258px">
@@ -72,7 +72,7 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.gj {
+.duole-bh {
   .players {
     display: flex;
   }
