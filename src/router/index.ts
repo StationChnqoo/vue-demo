@@ -74,6 +74,11 @@ const router = createRouter({
       name: "testDuole",
       component: () => import("../views/testDuole/index.vue"),
     },
+    {
+      path: "/test9f",
+      name: "test9f",
+      component: () => import("../views/test9f/index.vue"),
+    },
   ],
 });
 
