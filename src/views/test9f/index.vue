@@ -51,7 +51,7 @@
   /* margin: 2.54cm 3.17cm; */
 }
 .test-9f {
-  padding: 48px 64px;
+  padding: 72px 64px;
   .title {
     font-size: 24px;
     font-weight: bold;
