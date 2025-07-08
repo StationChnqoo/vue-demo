@@ -19,7 +19,7 @@
       <u>前端开发</u
       >，于<u>2025年6月16日</u>与本公司正式解除劳动关系，不再担任我司任何职务。
     </p>
-    <div style="height: 4px" />
+    <div style="height: 16px" />
     <p>&emsp;&emsp; 特此证明。</p>
     <div style="height: 56px" />
     <n-flex justify="flex-end" class="author"
@@ -28,7 +28,7 @@
         <p>2025年6月16日</p>
       </div></n-flex
     >
-    <div style="height: 36px" />
+    <div style="height: 48px" />
     <p>
       <span class="warning">&emsp;&emsp;离职事宜告知书</span
       ><span>（请妥善保管此证明，遗失不补）</span>
@@ -51,7 +51,7 @@
   /* margin: 2.54cm 3.17cm; */
 }
 .test-9f {
-  padding: 2.54cm 3.17cm;
+  padding: 48px 64px;
   .title {
     font-size: 24px;
     font-weight: bold;
