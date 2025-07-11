@@ -14,7 +14,7 @@ export const useCounterStore = defineStore("counter", () => {
 export const useDuoleStore = defineStore(
   "duole",
   () => {
-    const defaultGame = ref("gouji");
+    const defaultGame = ref("gj");
     const isHawk = ref(false);
     return { defaultGame, isHawk };
   },
